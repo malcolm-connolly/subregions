@@ -13,6 +13,10 @@ library(ggplot2)
 library(leaflet)
 library(sf)
 library(RColorBrewer)
+library(viridis)
+
+load("./www/regions_shp.RData") 
+load("./www/regions_shp0.RData") 
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
