@@ -15,8 +15,8 @@ library(sf)
 library(RColorBrewer)
 library(viridis)
 
-load("./www/regions_shp.RData") 
-load("./www/regions_shp0.RData") 
+subregions_shp <- readRDS("./www/subregions_shp.RData") 
+subregions_shp0 <- readRDS("./www/subregions_shp0.RData") 
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
