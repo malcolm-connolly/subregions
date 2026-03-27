@@ -66,7 +66,7 @@ server <- function(input, output) {
 
 
   output$Countrymap <- renderLeaflet(
-    leaflet() %>%
+    leaflet(options = leafletOptions(zoomControl = TRUE)) %>%
       setView(lng = 80, lat = 25, zoom = 4) %>%
       addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
       addPolygons(data = subregions_shp0,
@@ -75,7 +75,16 @@ server <- function(input, output) {
                   popup = ~country,
                   fillColor = subregions_shp0$country_col,
                   color = subregions_shp0$country_col,
-                  layerId = ~country)
+                  layerId = ~country) %>%
+      addControl(
+        html = "", position = "bottomleft" # placeholder control to ensure position works
+      ) %>%
+      htmlwidgets::onRender("
+    function(el, x) {
+      // Move zoom control to bottom left
+      this.zoomControl.setPosition('bottomright');
+    }
+  ")
   )
   
   output$Regionsmap <- renderLeaflet({
